@@ -10,14 +10,24 @@ import React, { useState } from 'react'
 
 import Cores from '../constantes/Cores'
 
+import {
+  useDispatch
+} from 'react-redux'
+
+import * as lugaresActions from '../store/lugares-actions';
+
+
+
 //single source of truth
-const NovoLugarTela = () => {
+const NovoLugarTela = (props) => {
+  const dispatch = useDispatch()
   const [novoLugar, setNovoLugar] = useState('')
   const novoLugarAlterado = (textoDigitado) => {
     setNovoLugar(textoDigitado)
   }
   const adicionarLugar = () => {
-    console.log(`Adicionando: ${novoLugar}`)
+    dispatch(lugaresActions.addLugar(novoLugar))
+    props.navigation.goBack()
   }
   return (
     <ScrollView>

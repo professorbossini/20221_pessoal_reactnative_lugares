@@ -18,12 +18,17 @@ const Stack = createNativeStackNavigator()
 const container = (
     <NavigationContainer>
         <Stack.Navigator 
-            initialRouteName="NovoLugar"
+            initialRouteName="ListaDeLugares"
             screenOptions={{
                 headerStyle: {backgroundColor: Cores.primary},
                 headerTintColor: 'white'
             }}>
-            <Stack.Screen name="DetalhesDoLugar" component={DetalhesDoLugarTela} />
+            <Stack.Screen 
+                name="DetalhesDoLugar" 
+                component={DetalhesDoLugarTela} 
+                options={(props) => ({
+                    title: props.route.params.tituloLugar
+                })}/>
             <Stack.Screen 
                 name="ListaDeLugares" 
                 component={ListaDeLugaresTela}
@@ -33,7 +38,6 @@ const container = (
                             title="Adicionar"
                             iconName="md-add"
                             onPress={() => {
-                                console.log("chamou...")
                                 props.navigation.navigate('NovoLugar')
                             }}
                         />    
